@@ -1,0 +1,45 @@
+{
+  "name": "simpsonquotes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorkol91/SimpsonQuotes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/igorkol91/SimpsonQuotes/issues"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^5.2.7",
+    "devtool": "^1.5.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "hint": "^6.1.4",
+    "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
+    "style-loader": "^3.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.20.1",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "homepage": "https://github.com/igorkol91/SimpsonQuotes#readme",
+  "dependencies": {
+    "jsdom": "^16.7.0",
+    "lodash": "^4.17.21"
+  }
+}
