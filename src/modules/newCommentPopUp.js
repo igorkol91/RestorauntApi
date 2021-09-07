@@ -98,7 +98,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
         errorP.className = 'erro';
         errorP.innerHTML = e.message;
         document.body.insertBefore(errorP, document.body.lastElementChild);
-      };
+      }
       nameField.value = '';
       insightField.value = '';
     }

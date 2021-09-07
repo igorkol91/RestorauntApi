@@ -1,6 +1,6 @@
 import newCommentPopUp from './newCommentPopUp.js';
 
-import countMeals from './itemCount.js';
+// import countMeals from './itemCount.js';
 
 const main = document.querySelector('main');
 
