@@ -26,6 +26,7 @@ const newCommentPopUp = (foodObject, main, menuDiv) => {
   closeButton.addEventListener('click', () => {
     document.querySelector('.overlay').classList.add('hide');
     main.removeChild(document.querySelector('.overlay'));
+    document.querySelector('body').classList.remove('stop-scrolling');
     menuDiv.classList.remove('hide');
   });
 
