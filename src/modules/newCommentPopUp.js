@@ -1,12 +1,11 @@
 import commentsCounter from './commentsCounter.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
-import refreshCommentsPage from './refreshCommentsPage.js';
 
 const newCommentPopUp = async (foodObject, main, menuDiv) => {
-  console.log(foodObject, main, menuDiv);
-  const { idCategory, strCategoryThumb, strCategory, strCategoryDescription } =
-    foodObject;
+  const {
+    idCategory, strCategoryThumb, strCategory, strCategoryDescription,
+  } = foodObject;
 
   const overlay = document.createElement('section');
   overlay.className = 'overlay';
@@ -87,8 +86,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
     const { value: name } = nameField;
     const { value: insight } = insightField;
     if (name && insight) {
-      const url =
-        'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/';
+      const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/';
       const body = {
         item_id: idCategory,
         username: name,
@@ -127,7 +125,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
     numberOfCommentsContainer,
     commentsContainer,
     newCommentHeading,
-    form
+    form,
   );
 
   overlay.appendChild(popUp);
