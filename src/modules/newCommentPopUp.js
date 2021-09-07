@@ -1,3 +1,4 @@
+import commentsCounter from './commentsCounter.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
 
@@ -45,7 +46,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
 
   const allComments = await getComments(url);
   numberOfCommentsContainer.textContent = `Comments(${
-    (!allComments.error && allComments.length) || 0
+    (!allComments.error && commentsCounter(allComments)) || 0
   })`;
 
   if (!allComments.error) {
