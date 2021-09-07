@@ -37,6 +37,7 @@ const displayData = (data) => {
   commentsBtn.addEventListener('click', () => {
     main.appendChild(newCommentPopUp(data, main, menuDiv));
     document.querySelector('.overlay').classList.remove('hide');
+    document.querySelector('body').classList.add('stop-scrolling');
     menuDiv.classList.add('hide');
   });
 };
