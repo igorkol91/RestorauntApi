@@ -31,6 +31,7 @@ body {
 .likesComments {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 /* .likesCountP {
@@ -69,7 +70,7 @@ body {
   z-index: 20;
   max-height: 100vh;
   overflow-y: auto;
-  backdrop-filter: blur(4px);
+  margin-bottom: 30px;
 }
 
 .pop-up {
@@ -77,10 +78,31 @@ body {
   width: 80%;
 }
 
+.pop-up .image {
+  width: 100%;
+}
+
+.pop-up-image {
+  width: 80%;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+}
+
+.comment {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
 .close {
   position: absolute;
   right: 2%;
-  top: 10px;
+  top: 0;
   background-color: transparent;
   border: none;
   font-size: 4rem;
@@ -88,4 +110,14 @@ body {
 
 .hide {
   display: none;
+}
+
+.comment-button {
+  margin-bottom: 20px;
+}
+
+@media all and (min-width: 786px) {
+  /* body {
+    background-color: #bbb;
+  } */
 }
