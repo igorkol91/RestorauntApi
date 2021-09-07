@@ -1,3 +1,4 @@
+import commentsCounter from './commentsCounter.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
 
@@ -45,7 +46,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
 
   const allComments = await getComments(url);
   numberOfCommentsContainer.textContent = `Comments(${
-    (!allComments.error && allComments.length) || 0
+    (!allComments.error && commentsCounter(allComments)) || 0
   })`;
 
   if (!allComments.error) {
@@ -54,9 +55,9 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
       comment.className = 'comment';
       commentsContainer.appendChild(comment);
       /*
-      "comment": "This is nice!",
-          "creation_date": "2021-01-10",
-          "username": "John"
+      'comment': 'This is nice!',
+          'creation_date': '2021-01-10',
+          'username': 'John'
       */
       comment.innerHTML = `<strong>${each.creation_date} ${each.username}</strong>: ${each.comment}`;
     });
@@ -92,15 +93,23 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
         comment: insight,
       };
       try {
+        nameField.value = '';
+        insightField.value = '';
         await postComment(body, url);
+        const overlay = await newCommentPopUp(foodObject, main, menuDiv);
+        main.innerHTML = '';
+        main.appendChild(overlay);
+        document.querySelector('.overlay').classList.remove('hide');
+        document.querySelector('body').classList.add('stop-scrolling');
+        menuDiv.classList.add('hide');
       } catch (e) {
+        nameField.value = name;
+        insightField.value = insight;
         const errorP = document.createElement('p');
         errorP.className = 'erro';
         errorP.innerHTML = e.message;
         document.body.insertBefore(errorP, document.body.lastElementChild);
       }
-      nameField.value = '';
-      insightField.value = '';
     }
   });
   commentButton.className = 'comment-button';
