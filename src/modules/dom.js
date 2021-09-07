@@ -1,3 +1,5 @@
+import countMeals from './itemCount.js';
+
 const main = document.querySelector('main');
 
 // I left this one for you. Here you can take the id from the object we are displaying
@@ -36,6 +38,7 @@ const getData = fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
   .then((response) => response.json())
   .then((data) => data.categories.forEach((element) => {
     displayData(element);
+    countMeals(main);
   }));
 
 export default getData;
