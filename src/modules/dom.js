@@ -1,9 +1,8 @@
 import newCommentPopUp from './newCommentPopUp.js';
 
-const main = document.querySelector('main');
+import countMeals from './itemCount.js';
 
-// I left this one for you. Here you can take the id from the object we are displaying
-// data.categories[0].idCategory
+const main = document.querySelector('main');
 
 const displayData = (data) => {
   // create elements for a menu item
@@ -41,7 +40,6 @@ const displayData = (data) => {
     menuDiv.classList.add('hide');
   });
 };
-
 const getData = () => {
   main.innerHTML = '';
   return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
