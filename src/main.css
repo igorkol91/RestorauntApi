@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   padding: 0;
@@ -17,8 +16,32 @@ body {
 }
 
 /* .comment-btn {
-  width: 55%;
-} */
+
+.header-ul {
+  display: flex;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid;
+  list-style: none;
+  align-items: center;
+}
+
+.header-img {
+  height: 8vh;
+  width: 8vh;
+  margin-left: 2em;
+}
+
+.header-item {
+  margin-left: 2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header-item:hover {
+  color: gray;
+  text-decoration: underline;
+}
 
 .row {
   justify-content: center;
