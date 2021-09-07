@@ -7,7 +7,6 @@ const main = document.querySelector('main');
 
 const displayData = (data) => {
   // create elements for a menu item
-  console.log(data, ' >>>data');
   const menuDiv = document.createElement('div');
   const menuImg = document.createElement('img');
   const menuHeadline = document.createElement('h3');
@@ -34,8 +33,9 @@ const displayData = (data) => {
   likesAndComments.append(commentsBtn, likesCount, likesBtn);
   menuDiv.append(menuImg, menuHeadline, menuText, likesAndComments);
   main.appendChild(menuDiv);
-  commentsBtn.addEventListener('click', () => {
-    main.appendChild(newCommentPopUp(data, main, menuDiv));
+  commentsBtn.addEventListener('click', async () => {
+    const overlay = await newCommentPopUp(data, main, menuDiv);
+    main.appendChild(overlay);
     document.querySelector('.overlay').classList.remove('hide');
     document.querySelector('body').classList.add('stop-scrolling');
     menuDiv.classList.add('hide');
