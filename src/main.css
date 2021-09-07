@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -40,6 +34,28 @@ body {
 .header-item:hover {
   color: gray;
   text-decoration: underline;
+=======
+.comment-btn {
+  width: 55%;
+}
+
+.comment-btn:hover {
+  border: 2px solid black;
+}
+
+.likesComments {
+  display: flex;
+  justify-content: space-between;
+}
+
+.likesCountP {
+  margin-left: 15%;
+  padding-top: 2%;
+}
+
+.menuText {
+  height: 4.3em;
+  overflow-y: scroll;
 }
 
 .footer {
