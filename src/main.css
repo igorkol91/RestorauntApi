@@ -11,6 +11,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 /* .comment-btn {
   width: 55%;
 } */
@@ -51,13 +56,20 @@ body {
 }
 
 .overlay {
-  position: absolute;
   background-color: #fff;
   width: 100vw;
-  height: 100vh;
-  overflow-y: scroll;
+  height: 100%;
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: unset;
+  text-align: center;
+  z-index: 20;
+  max-height: 100vh;
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
 }
 
 .pop-up {
