@@ -34,7 +34,8 @@ body {
 .header-item:hover {
   color: gray;
   text-decoration: underline;
-=======
+}
+
 .comment-btn {
   width: 55%;
 }
