@@ -40,6 +40,7 @@ const displayData = (data) => {
     menuDiv.classList.add('hide');
   });
 };
+
 const getData = () => {
   main.innerHTML = '';
   return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')

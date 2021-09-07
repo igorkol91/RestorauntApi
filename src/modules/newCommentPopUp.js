@@ -1,11 +1,12 @@
 import commentsCounter from './commentsCounter.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
+import refreshCommentsPage from './refreshCommentsPage.js';
 
 const newCommentPopUp = async (foodObject, main, menuDiv) => {
-  const {
-    idCategory, strCategoryThumb, strCategory, strCategoryDescription,
-  } = foodObject;
+  console.log(foodObject, main, menuDiv);
+  const { idCategory, strCategoryThumb, strCategory, strCategoryDescription } =
+    foodObject;
 
   const overlay = document.createElement('section');
   overlay.className = 'overlay';
@@ -55,9 +56,9 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
       comment.className = 'comment';
       commentsContainer.appendChild(comment);
       /*
-      "comment": "This is nice!",
-          "creation_date": "2021-01-10",
-          "username": "John"
+      'comment': 'This is nice!',
+          'creation_date': '2021-01-10',
+          'username': 'John'
       */
       comment.innerHTML = `<strong>${each.creation_date} ${each.username}</strong>: ${each.comment}`;
     });
@@ -86,22 +87,31 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
     const { value: name } = nameField;
     const { value: insight } = insightField;
     if (name && insight) {
-      const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/';
+      const url =
+        'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/';
       const body = {
         item_id: idCategory,
         username: name,
         comment: insight,
       };
       try {
+        nameField.value = '';
+        insightField.value = '';
         await postComment(body, url);
+        const overlay = await newCommentPopUp(foodObject, main, menuDiv);
+        main.innerHTML = '';
+        main.appendChild(overlay);
+        document.querySelector('.overlay').classList.remove('hide');
+        document.querySelector('body').classList.add('stop-scrolling');
+        menuDiv.classList.add('hide');
       } catch (e) {
+        nameField.value = name;
+        insightField.value = insight;
         const errorP = document.createElement('p');
         errorP.className = 'erro';
         errorP.innerHTML = e.message;
         document.body.insertBefore(errorP, document.body.lastElementChild);
       }
-      nameField.value = '';
-      insightField.value = '';
     }
   });
   commentButton.className = 'comment-button';
@@ -117,7 +127,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
     numberOfCommentsContainer,
     commentsContainer,
     newCommentHeading,
-    form,
+    form
   );
 
   overlay.appendChild(popUp);
