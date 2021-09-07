@@ -80,9 +80,10 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
 
   const commentButton = document.createElement('button');
   commentButton.addEventListener('click', async () => {
-    const { value: name } = document.querySelector('.name');
-    const { value: insight } = document.querySelector('.insight');
-
+    const nameField = document.querySelector('.name');
+    const insightField = document.querySelector('.insight');
+    const { value: name } = nameField;
+    const { value: insight } = insightField;
     if (name && insight) {
       const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/';
       const body = {
@@ -97,7 +98,9 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
         errorP.className = 'erro';
         errorP.innerHTML = e.message;
         document.body.insertBefore(errorP, document.body.lastElementChild);
-      }
+      };
+      nameField.value = '';
+      insightField.value = '';
     }
   });
   commentButton.className = 'comment-button';
