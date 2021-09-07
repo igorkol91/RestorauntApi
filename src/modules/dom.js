@@ -1,3 +1,5 @@
+import newCommentPopUp from "./newCommentPopUp";
+
 const main = document.querySelector('main');
 
 // I left this one for you. Here you can take the id from the object we are displaying
@@ -5,6 +7,7 @@ const main = document.querySelector('main');
 
 const displayData = (data) => {
   // create elements for a menu item
+  console.log(data, ' >>>data');
   const menuDiv = document.createElement('div');
   const menuImg = document.createElement('img');
   const menuHeadline = document.createElement('h3');
@@ -14,28 +17,35 @@ const displayData = (data) => {
   const likesCount = document.createElement('p');
   const likesBtn = document.createElement('button');
   // put classes and values
-  menuDiv.classList = 'menuDiv col-sm-12 col-md-6 col-lg-4 my-4';
+  menuDiv.classList = 'menuDiv col-sm-12 col-md-6 col-lg-3 my-4';
   menuText.classList = 'menuText';
   likesAndComments.classList = 'likesComments';
   commentsBtn.classList = 'comment-btn';
   commentsBtn.innerText = 'Comment';
+  
   likesCount.classList = 'likesCountP';
-  likesCount.innerText = '0';
-  likesBtn.classList = 'px-5';
+  likesCount.innerText = '0 likes';
+  // likesBtn.classList = 'px-5';
   likesBtn.innerText = 'Like';
   // put values to every element
   menuHeadline.innerHTML = data.strCategory;
   menuImg.src = data.strCategoryThumb;
-  menuText.innerHTML = data.strCategoryDescription;
+  menuText.innerHTML = data.strCategoryDescription.split('.')[0] + '.';
   likesAndComments.append(commentsBtn, likesCount, likesBtn);
   menuDiv.append(menuImg, menuHeadline, menuText, likesAndComments);
   main.appendChild(menuDiv);
+  commentsBtn.addEventListener('click', () => {
+    main.appendChild(newCommentPopUp(data, main, menuDiv));
+    document.querySelector('.overlay').classList.remove('hide');
+    menuDiv.classList.add('hide');
+  });
 };
 
-const getData = fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+export const getData = () => {
+  main.innerHTML = '';
+  return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
   .then((response) => response.json())
-  .then((data) => data.categories.forEach((element) => {
-    displayData(element);
-  }));
+  .then((data) => data.categories.forEach((element, index) => (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element)));
+}
 
 export default getData;
