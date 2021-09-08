@@ -8,6 +8,8 @@
 - Html
 - Bootstrap
 - Css
+- Jest
+- Fontawesome CDN
 
 [LiveLink](https://igorkol91.github.io/RestorauntApi/dist/)
 
@@ -34,11 +36,18 @@ Vscode
 - Twitter: [@Destro49536502](https://twitter.com/Destro49536502)
 - LinkedIn: [Koloski Igor](https://www.linkedin.com/in/igor-koloski-a754aa208/)
 
+
+👤 **Henry Kc**
+
+- GitHub: [@githubhandle](https://github.com/henrykc24)
+- Twitter: [@twitterhandle](https://twitter.com/henrykc24)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/henry-kc)
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/igorkol91/LeaderboardApi/issues).
+Feel free to check the [issues page](https://github.com/igorkol91/RestorauntApi/issues).
 
 ## Show your support
 
