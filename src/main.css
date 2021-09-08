@@ -1,6 +1,6 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box;
   min-height: 100vh;
   flex: 1;
@@ -43,6 +43,7 @@ body {
 
 .row {
   justify-content: center;
+  margin: 0 10px;
 }
 
 .comment-btn:hover {
@@ -54,11 +55,6 @@ body {
   justify-content: space-between;
   align-items: baseline;
 }
-
-/* .likesCountP {
-  margin-left: 15%;
-  padding-top: 2%;
-} */
 
 .menuDiv {
   border: solid;
@@ -94,9 +90,13 @@ body {
   margin-bottom: 30px;
 }
 
+.c-loading {
+  font-size: 1rem;
+}
+
 .pop-up {
   text-align: center;
-  width: 80%;
+  width: 70%;
 }
 
 .pop-up .image {
@@ -104,29 +104,43 @@ body {
 }
 
 .pop-up-image {
-  width: 80%;
-  padding: 20px;
+  width: 100%;
+  margin: 20px 0;
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
   margin: auto;
 }
 
-.comment {
+.form > * {
+  margin: 10px 0;
+  width: 100%;
+}
+
+.pop-up-description {
   margin-bottom: 20px;
+  text-align: justify;
+}
+
+.comment {
   text-align: left;
 }
 
+.new-comment-heading {
+  margin-top: 50px;
+}
+
 .close {
-  position: absolute;
-  right: 2%;
+  position: fixed;
+  right: 1%;
   top: 0;
   background-color: transparent;
   border: none;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .hide {
@@ -135,10 +149,31 @@ body {
 
 .comment-button {
   margin-bottom: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 1.5rem;
+}
+
+.comment-button:hover {
+  background-color: rgb(3, 66, 3);
 }
 
 @media all and (min-width: 786px) {
-  /* body {
-    background-color: #bbb;
-  } */
+  .pop-up {
+    text-align: center;
+    width: 60%;
+  }
+
+  .close {
+    right: 16%;
+    font-size: 3rem;
+  }
+
+  .form > * {
+    margin: 10px 0;
+    width: 50%;
+  }
 }
