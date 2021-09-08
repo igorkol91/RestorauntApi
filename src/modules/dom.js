@@ -3,9 +3,9 @@ import { postLikes, getLikes } from './likes.js';
 import countMeals from './itemCount.js';
 
 const main = document.querySelector('main');
+window.onload = setTimeout(() => { countMeals(main); }, 500);
 
 const displayData = (data) => {
-  countMeals(main);
   // create elements for a menu item
   const menuDiv = document.createElement('div');
   const menuImg = document.createElement('img');
