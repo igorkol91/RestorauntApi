@@ -41,10 +41,12 @@ const displayData = (data) => {
     document.querySelector('body').classList.add('stop-scrolling');
     menuDiv.classList.add('hide');
   });
-  likesBtn.addEventListener('click', () => {
+  likesBtn.addEventListener('click', (e) => {
     postLikes(likesBtn);
     // set timeout to give postLikes the time to post the like value
     // one second later I get everything and the like is succesfully updated
+    const increasedLike = parseInt(e.target.parentNode.childNodes[1].innerText, 10) + 1;
+    e.target.parentNode.childNodes[1].innerText = increasedLike.toString();
     setTimeout(() => { getLikes(); }, 1000);
   });
 };
