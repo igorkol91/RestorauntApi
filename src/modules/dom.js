@@ -33,7 +33,7 @@ const displayData = (data) => {
   menuDiv.append(menuImg, menuHeadline, menuText, likesAndComments);
   main.appendChild(menuDiv);
   commentsBtn.addEventListener('click', async () => {
-    const overlay = await newCommentPopUp(data, main, menuDiv);
+    const overlay = newCommentPopUp(data, main, menuDiv);
     main.appendChild(overlay);
     document.querySelector('.overlay').classList.remove('hide');
     document.querySelector('body').classList.add('stop-scrolling');
@@ -41,11 +41,14 @@ const displayData = (data) => {
   });
 };
 
-const getData = () => {
+const getData = (foods) => {
   main.innerHTML = '';
   return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     .then((response) => response.json())
-    .then((data) => data.categories.forEach((element, index) => (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element)));
+    .then((data) => {
+      foods = data;
+      foods.categories.forEach((element, index) => (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element));
+    });
 };
 
 export default getData;
