@@ -17,6 +17,7 @@ module.exports = {
       use: ['style-loader', 'css-loader'],
     }],
   },
+
   devtool: 'inline-source-map',
   output: {
     filename: 'main.js',
