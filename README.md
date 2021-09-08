@@ -28,7 +28,7 @@ Vscode
 
 ## Authors
 
-👤 **Igor Koloski**
+👤 **Igor Koloski**  
 
 - GitHub: [@igorkol91](https://github.com/igorkol91)
 - Twitter: [@Destro49536502](https://twitter.com/Destro49536502)
