@@ -46,14 +46,28 @@ body {
   margin: 0 10px;
 }
 
+.comment-btn {
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #333;
+}
+
 .comment-btn:hover {
-  border: 2px solid black;
+  background-color: #333;
+  color: #fff;
 }
 
 .likesComments {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.fa-thumbs-up {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .menuDiv {
