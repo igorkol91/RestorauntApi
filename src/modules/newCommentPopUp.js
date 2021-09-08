@@ -2,9 +2,12 @@ import commentsCounter from './commentsCounter.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
 
-const newCommentPopUp = async (foodObject, main, menuDiv) => {
+const newCommentPopUp = (foodObject, main, menuDiv) => {
   const {
-    idCategory, strCategoryThumb, strCategory, strCategoryDescription,
+    idCategory,
+    strCategoryThumb,
+    strCategory,
+    strCategoryDescription,
   } = foodObject;
 
   const overlay = document.createElement('section');
@@ -16,6 +19,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
   const closeButton = document.createElement('button');
   closeButton.className = 'close';
   closeButton.innerHTML = '&times;';
+
   closeButton.addEventListener('click', () => {
     document.querySelector('.overlay').classList.add('hide');
     main.removeChild(document.querySelector('.overlay'));
@@ -38,30 +42,32 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
 
   const numberOfCommentsContainer = document.createElement('h2');
   numberOfCommentsContainer.className = 'num-of-comments';
+  numberOfCommentsContainer.innerHTML = 'Comments(<span class="c-loading">Loading...</span>)';
 
   const commentsContainer = document.createElement('div');
   commentsContainer.className = 'comments-container';
 
-  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/?item_id=${idCategory}`;
+  commentsContainer.textContent = 'Loading...';
 
-  const allComments = await getComments(url);
-  numberOfCommentsContainer.textContent = `Comments(${
-    (!allComments.error && commentsCounter(allComments)) || 0
-  })`;
+  const updateComments = async () => {
+    const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/?item_id=${idCategory}`;
+    const allComments = await getComments(url);
+    commentsContainer.textContent = '';
+    numberOfCommentsContainer.textContent = `Comments(${
+      (!allComments.error && commentsCounter(allComments)) || 0
+    })`;
 
-  if (!allComments.error) {
-    allComments.forEach((each) => {
-      const comment = document.createElement('p');
-      comment.className = 'comment';
-      commentsContainer.appendChild(comment);
-      /*
-      'comment': 'This is nice!',
-          'creation_date': '2021-01-10',
-          'username': 'John'
-      */
-      comment.innerHTML = `<strong>${each.creation_date} ${each.username}</strong>: ${each.comment}`;
-    });
-  }
+    if (!allComments.error) {
+      allComments.forEach((each) => {
+        const comment = document.createElement('p');
+        comment.className = 'comment';
+        commentsContainer.appendChild(comment);
+        comment.innerHTML = `<strong>${each.creation_date} ${each.username}</strong>:   ${each.comment}`;
+      });
+    }
+  };
+
+  updateComments();
 
   const newCommentHeading = document.createElement('h2');
   newCommentHeading.className = 'new-comment-heading';
@@ -96,12 +102,7 @@ const newCommentPopUp = async (foodObject, main, menuDiv) => {
         nameField.value = '';
         insightField.value = '';
         await postComment(body, url);
-        const overlay = await newCommentPopUp(foodObject, main, menuDiv);
-        main.innerHTML = '';
-        main.appendChild(overlay);
-        document.querySelector('.overlay').classList.remove('hide');
-        document.querySelector('body').classList.add('stop-scrolling');
-        menuDiv.classList.add('hide');
+        updateComments();
       } catch (e) {
         nameField.value = name;
         insightField.value = insight;
