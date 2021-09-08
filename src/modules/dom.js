@@ -46,7 +46,7 @@ const displayData = (data) => {
     // set timeout to give postLikes the time to post the like value
     // one second later I get everything and the like is succesfully updated
     const increasedLike = parseInt(e.target.parentNode.childNodes[1].innerText, 10) + 1;
-    e.target.parentNode.childNodes[1].innerText = increasedLike.toString();
+    e.target.parentNode.childNodes[1].innerText = `${increasedLike.toString()} Likes`;
     setTimeout(() => { getLikes(); }, 1000);
   });
 };

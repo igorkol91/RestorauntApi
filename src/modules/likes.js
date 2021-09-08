@@ -1,17 +1,16 @@
 const header = new Headers({ 'Content-type': 'application/json; charset=UTF-8' });
 const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/likes/';
-
 const showData = (data) => {
   data.forEach((element) => {
     const id = element.item_id;
     if (document.getElementById(id)) {
-      document.getElementById(id).innerText = element.likes;
+      document.getElementById(id).innerText = `${element.likes} Likes`;
     }
   });
 };
 
 const postLikes = async (button) => {
-  const result = await fetch(url, {
+  await fetch(url, {
     method: 'POST',
     body: JSON.stringify({
       item_id: `${button.parentNode.childNodes[1].id}`,
