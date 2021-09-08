@@ -20,16 +20,22 @@
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
-In vsCode console run $git clone https://github.com/igorkol91/RestorauntApi
-Then run $cd (the folder name)
-Choose the corect branch by runnung $git checkout develop
-To install all dependancies in the console run $npm install
-To start the server run $npm start
+
+### To get a local copy up and running follow these simple example steps.
+
+Clone the repo with `git clone https://github.com/igorkol91/RestorauntApi.git`
+
+Run `cd RestorauntApi` to navigate to the project folder
+
+Run `npm install` from the command line
+
+Run `npm start` to start the local server in the a browser
 
 ### Prerequisites
 
-Vscode
+- Have `git` installed
+- Have text editor installed
+- Install a browser
 
 ## Authors
 
