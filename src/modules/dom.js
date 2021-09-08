@@ -14,7 +14,9 @@ const displayData = (data) => {
   const likesAndComments = document.createElement('div');
   const commentsBtn = document.createElement('button');
   const likesCount = document.createElement('p');
-  const likesBtn = document.createElement('button');
+  const likesBtn = document.createElement('i');
+  // <i class="far fa-thumbs-up"></i>
+  likesBtn.classList.add('far', 'fa-thumbs-up');
   // put classes and values
   menuDiv.classList = 'menuDiv col-sm-12 col-md-6 col-lg-3 my-4';
   menuText.classList = 'menuText';
@@ -26,7 +28,7 @@ const displayData = (data) => {
   likesCount.innerText = '0 likes';
   likesCount.id = data.idCategory;
   // likesBtn.classList = 'px-5';
-  likesBtn.innerText = 'Like';
+  // likesBtn.innerText = 'Like';
   // put values to every element
   menuHeadline.innerHTML = data.strCategory;
   menuImg.src = data.strCategoryThumb;
