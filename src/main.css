@@ -73,11 +73,15 @@ body {
   border: solid;
   border-color: #666;
   border-radius: 5px;
-  padding: 3px;
+  padding: 15px;
   margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.menuDiv:hover {
+  box-shadow: 0 0 20px black;
 }
 
 .footer {
