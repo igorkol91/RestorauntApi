@@ -62,8 +62,10 @@ const getData = (foods) => {
       foods.categories.forEach((element, index) => {
         if (index < 7 && element.strCategory !== 'Miscellaneous') {
           countArray.push(index);
+          if (index + 1 === 7) {
+            document.querySelector('.header-item').innerHTML = countMeals(countArray);
+          }
         }
-        index + 1 === 7 && (document.querySelector('.header-item').innerHTML = countMeals(countArray));
         return (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element);
       });
     });
