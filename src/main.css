@@ -29,6 +29,8 @@ body {
   list-style: none;
   align-items: center;
   justify-content: space-between;
+  background-color: #4c3c3c;
+  color: #fff;
 }
 
 .header-img {
@@ -61,14 +63,16 @@ body {
 }
 
 .comment-btn {
-  background-color: #fff;
+  background-color: #4c3c3c;
+  font-weight: bold;
+  color: #fff;
   border-radius: 5px;
-  border: 1px solid #333;
+  border: 2px solid #333;
 }
 
 .comment-btn:hover {
-  background-color: #333;
-  color: #fff;
+  background-color: #fff;
+  color: #4c3c3c;
 }
 
 .likesComments {
@@ -106,6 +110,8 @@ body {
   line-height: 50px;
   font-size: 0.8rem;
   border-top: 1px solid;
+  background-color: #4c3c3c;
+  color: #fff;
 }
 
 .footer-text {
