@@ -28,7 +28,11 @@ const displayData = (data) => {
   // put values to every element
   menuHeadline.innerHTML = data.strCategory;
   menuImg.src = data.strCategoryThumb;
-  menuText.innerHTML = `${data.strCategoryDescription.split('.')[0]}.`;
+  let description = data.strCategoryDescription;
+  if (description.length > 70) {
+    description = `${description.substr(0, 70)}...`;
+  }
+  menuText.innerHTML = description;
   likesAndComments.append(commentsBtn, likesCount, likesBtn);
   menuDiv.append(menuImg, menuHeadline, menuText, likesAndComments);
   main.appendChild(menuDiv);
@@ -45,7 +49,9 @@ const displayData = (data) => {
     // one second later I get everything and the like is succesfully updated
     const increasedLike = parseInt(e.target.parentNode.childNodes[1].innerText, 10) + 1;
     e.target.parentNode.childNodes[1].innerText = `${increasedLike.toString()} Likes`;
-    setTimeout(() => { getLikes(); }, 1000);
+    setTimeout(() => {
+      getLikes();
+    }, 1000);
   });
 };
 
@@ -57,13 +63,11 @@ const getData = (foods) => {
     .then((data) => {
       foods = data;
       foods.categories.forEach((element, index) => {
-        if (index < 7 && element.strCategory !== 'Miscellaneous') {
-          countArray.push(index);
-          if (index + 1 === 7) {
-            document.querySelector('.header-item').innerHTML = countMeals(countArray);
-          }
+        countArray.push(index);
+        if (index === data.categories.length - 1) {
+          document.querySelector('.header-item').innerHTML = countMeals(countArray);
         }
-        return (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element);
+        return displayData(element);
       });
     });
 };
