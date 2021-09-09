@@ -3,7 +3,6 @@ import { postLikes, getLikes } from './likes.js';
 import countMeals from './itemCount.js';
 
 const main = document.querySelector('main');
-window.onload = setTimeout(() => { countMeals(main); }, 500);
 
 const displayData = (data) => {
   // create elements for a menu item
@@ -55,11 +54,18 @@ const displayData = (data) => {
 
 const getData = (foods) => {
   main.innerHTML = '';
+  const countArray = [];
   return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     .then((response) => response.json())
     .then((data) => {
       foods = data;
-      foods.categories.forEach((element, index) => (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element));
+      foods.categories.forEach((element, index) => {
+        if (index < 7 && element.strCategory !== 'Miscellaneous') {
+          countArray.push(index);
+        }
+        index + 1 === 7 && (document.querySelector('.header-item').innerHTML = countMeals(countArray));
+        return (index < 7 && element.strCategory !== 'Miscellaneous') && displayData(element);
+      });
     });
 };
 export default getData;
