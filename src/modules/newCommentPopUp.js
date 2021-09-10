@@ -51,14 +51,15 @@ const newCommentPopUp = (foodObject, main, menuDiv) => {
   commentsContainer.innerHTML = 'Loading...';
 
   const updateComments = async () => {
-    const url = 'https://us-central1-involvement-api.cloudfunctions.net/' +
-     `capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/?item_id=${idCategory}`;
+    const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/?item_id=${idCategory}`;
     const allComments = await getComments(url);
     commentsContainer.innerHTML = '';
     numberOfCommentsContainer.textContent = `Comments(${
       (!allComments.error && commentsCounter(allComments)) || 0
     })`;
-    allComments.length && commentsContainer.appendChild(createTableRow('headerRow', 'Date', 'Name', 'Comment'));
+    if (allComments.length) {
+      commentsContainer.appendChild(createTableRow('headerRow', 'Date', 'Name', 'Comment'));
+    }
     if (!allComments.error) {
       allComments.forEach((each) => {
         commentsContainer.appendChild(createTableRow('row', each.creation_date, each.username, each.comment));

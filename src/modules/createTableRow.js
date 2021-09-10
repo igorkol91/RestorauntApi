@@ -1,6 +1,8 @@
 const createTableRow = (type, val1, val2, val3) => {
   const tr = document.createElement('tr');
-  let td1, td2, td3;
+  let td1;
+  let td2;
+  let td3;
   if (type === 'headerRow') {
     td1 = document.createElement('th');
     td1.className = 'th1';
