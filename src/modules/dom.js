@@ -33,7 +33,7 @@ const displayData = (data) => {
   likesAndComments.append(commentsBtn, likesCount, likesBtn);
   menuDiv.append(menuImg, menuHeadline, menuText, likesAndComments);
   main.appendChild(menuDiv);
-  commentsBtn.addEventListener('click', async () => {
+  commentsBtn.addEventListener('click', () => {
     const overlay = newCommentPopUp(data, main, menuDiv);
     main.appendChild(overlay);
     document.querySelector('.overlay').classList.remove('hide');
