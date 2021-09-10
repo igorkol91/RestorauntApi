@@ -20,9 +20,9 @@ const postLikes = async (button) => {
 };
 
 const getLikes = async () => {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => showData(data));
+  const tempResult = await fetch(url);
+  const finalResult = await tempResult.json();
+  showData(finalResult);
 };
 
 document.onload = getLikes();
