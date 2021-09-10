@@ -5,7 +5,6 @@ import countMeals from './itemCount.js';
 const main = document.querySelector('main');
 
 const displayData = (data) => {
-  // create elements for a menu item
   const menuDiv = document.createElement('div');
   const menuImg = document.createElement('img');
   const menuHeadline = document.createElement('h3');
@@ -15,7 +14,6 @@ const displayData = (data) => {
   const likesCount = document.createElement('p');
   const likesBtn = document.createElement('i');
   likesBtn.classList.add('far', 'fa-thumbs-up');
-  // put classes and values
   menuDiv.classList = 'menuDiv col-sm-12 col-md-6 col-lg-3 my-4';
   menuText.classList = 'menuText';
   likesAndComments.classList = 'likesComments';
@@ -25,7 +23,6 @@ const displayData = (data) => {
   likesCount.classList = 'likesCountP';
   likesCount.innerText = '0 likes';
   likesCount.id = data.idCategory;
-  // put values to every element
   menuHeadline.innerHTML = data.strCategory;
   menuImg.src = data.strCategoryThumb;
   let description = data.strCategoryDescription;
@@ -45,8 +42,6 @@ const displayData = (data) => {
   });
   likesBtn.addEventListener('click', (e) => {
     postLikes(likesBtn);
-    // set timeout to give postLikes the time to post the like value
-    // one second later I get everything and the like is succesfully updated
     const increasedLike = parseInt(e.target.parentNode.childNodes[1].innerText, 10) + 1;
     e.target.parentNode.childNodes[1].innerText = `${increasedLike.toString()} Likes`;
     setTimeout(() => {
@@ -55,20 +50,20 @@ const displayData = (data) => {
   });
 };
 
-const getData = (foods) => {
+const getData = async (foods) => {
   main.innerHTML = '';
   const countArray = [];
-  return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-    .then((response) => response.json())
-    .then((data) => {
-      foods = data;
-      foods.categories.forEach((element, index) => {
-        countArray.push(index);
-        if (index === data.categories.length - 1) {
-          document.querySelector('.header-item').innerHTML = countMeals(countArray);
-        }
-        return displayData(element);
-      });
-    });
+  const tempResult = await fetch(
+    'https://www.themealdb.com/api/json/v1/1/categories.php',
+  );
+  const finalResult = await tempResult.json();
+  foods = finalResult;
+  foods.categories.forEach((element, index) => {
+    countArray.push(index);
+    if (index === foods.categories.length - 1) {
+      document.querySelector('.header-item').innerHTML = countMeals(countArray);
+    }
+    return displayData(element);
+  });
 };
 export default getData;
