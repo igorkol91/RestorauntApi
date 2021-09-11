@@ -2,15 +2,16 @@ import commentsCounter from './commentsCounter.js';
 import createTableRow from './createTableRow.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
+import updateComments from './updateComments.js';
 
 const newCommentPopUp = (foodObject, main, menuDiv) => {
   const {
-    idCategory,
-    strCategoryThumb,
-    strCategory,
-    strCategoryDescription,
+    idCategory, strCategoryThumb, strCategory, strCategoryDescription,
   } = foodObject;
 
+  const commentsObject = {
+    numberOfComment: 0,
+  };
   const overlay = document.createElement('section');
   overlay.className = 'overlay';
 
@@ -48,26 +49,18 @@ const newCommentPopUp = (foodObject, main, menuDiv) => {
   const commentsContainer = document.createElement('table');
   commentsContainer.className = 'comments-table';
 
-  commentsContainer.innerHTML = 'Loading...';
+  commentsContainer.innerHTML = '<span class="table-loading">Loading...</span>';
 
-  const updateComments = async () => {
-    const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/?item_id=${idCategory}`;
-    const allComments = await getComments(url);
-    commentsContainer.innerHTML = '';
-    numberOfCommentsContainer.textContent = `Comments(${
-      (!allComments.error && commentsCounter(allComments)) || 0
-    })`;
-    if (allComments.length) {
-      commentsContainer.appendChild(createTableRow('headerRow', 'Date', 'Name', 'Comment'));
-    }
-    if (!allComments.error) {
-      allComments.forEach((each) => {
-        commentsContainer.appendChild(createTableRow('row', each.creation_date, each.username, each.comment));
-      });
-    }
-  };
-
-  updateComments();
+  updateComments(
+    idCategory,
+    getComments,
+    commentsContainer,
+    numberOfCommentsContainer,
+    commentsCounter,
+    createTableRow,
+    commentsObject,
+    { post: false },
+  );
 
   const newCommentHeading = document.createElement('h2');
   newCommentHeading.className = 'new-comment-heading';
@@ -98,18 +91,25 @@ const newCommentPopUp = (foodObject, main, menuDiv) => {
         username: name,
         comment: insight,
       };
-      try {
-        nameField.value = '';
-        insightField.value = '';
-        await postComment(body, url);
-        updateComments();
-      } catch (e) {
+      const day = new Date();
+      let month = (day.getMonth() + 1).toString();
+      if (month.length === 1) {
+        month = `0${month}`;
+      }
+      const date = `${day.getFullYear()}-${month}-${day.getDate()}`;
+      const row = createTableRow('row', date, name, insight);
+      commentsContainer.appendChild(row);
+      numberOfCommentsContainer.textContent = `Comments(${commentsObject.numberOfComments + 1})`;
+      commentsObject.numberOfComments += 1;
+      nameField.value = '';
+      insightField.value = '';
+      const result = await postComment(body, url);
+      if (!result.ok) {
         nameField.value = name;
         insightField.value = insight;
-        const errorP = document.createElement('p');
-        errorP.className = 'erro';
-        errorP.innerHTML = e.message;
-        document.body.insertBefore(errorP, document.body.lastElementChild);
+        commentsContainer.removeChild(row);
+        numberOfCommentsContainer.textContent = `Comments(${commentsObject.numberOfComments - 1})`;
+        commentsObject.numberOfComments -= 1;
       }
     }
   });
