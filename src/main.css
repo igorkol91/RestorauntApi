@@ -119,9 +119,8 @@ body {
 }
 
 .overlay {
-  background-color: #fff;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -130,9 +129,11 @@ body {
   opacity: unset;
   text-align: center;
   z-index: 20;
-  max-height: 100vh;
-  overflow-y: auto;
-  margin-bottom: 30px;
+  min-height: 100vh;
+  overflow-y: scroll;
+  padding: 50px 0;
+  margin-bottom: 50px;
+  backdrop-filter: blur(20px);
 }
 
 .c-loading {
@@ -140,8 +141,39 @@ body {
 }
 
 .pop-up {
+  background-color: #fff;
   text-align: center;
-  width: 70%;
+  width: 90vw;
+}
+
+.pop-up table {
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.th1,
+.td1 {
+  min-width: 100px;
+}
+
+th {
+  font-size: 1.2rem;
+}
+
+.pop-up-description,
+.num-of-comments {
+  background-color: #fff;
+  margin: 0;
+}
+
+.num-of-comments {
+  padding: 30px 0 10px;
+}
+
+.comments-table tr * {
+  padding: 5px;
 }
 
 .pop-up .image {
@@ -159,67 +191,104 @@ body {
   align-items: center;
   text-align: center;
   margin: auto;
-}
-
-.form > * {
-  margin: 10px 0;
-  width: 100%;
+  background-color: #fff;
 }
 
 .pop-up-description {
-  margin-bottom: 20px;
   text-align: justify;
-}
-
-.comment {
-  text-align: left;
+  padding: 0 20px;
 }
 
 .new-comment-heading {
-  margin-top: 50px;
+  text-align: center;
+  padding-top: 30px;
+  background-color: #fff;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+td,
+th {
+  border: 1px solid #4c3c3c;
+}
+
+td:first-child,
+th:first-child {
+  border-left: none;
+}
+
+td:last-child,
+th:last-child {
+  border-right: none;
+}
+
+tr:nth-child(even) {
+  background-color: #f3f3f3;
 }
 
 .close {
+  display: block;
   position: fixed;
-  right: 1%;
-  top: 0;
+  right: 6%;
+  top: 5%;
   background-color: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .hide {
   display: none;
 }
 
+.name,
+.insight,
 .comment-button {
-  margin-bottom: 20px;
-  background-color: #333;
+  margin: 10px 0;
+  width: 95%;
+}
+
+.comment-button {
+  margin-bottom: 40px;
+  background-color: #4c3c3c;
   color: #fff;
   border: none;
   border-radius: 5px;
   height: 40px;
   font-size: 1.5rem;
+  padding-bottom: 40px;
 }
 
 .comment-button:hover {
-  background-color: rgb(3, 66, 3);
+  background-color: #fff;
+  color: #4c3c3c;
+  font-weight: bold;
+  border: 2px solid #4c3c3c;
 }
 
 @media all and (min-width: 786px) {
   .pop-up {
     text-align: center;
-    width: 60%;
+    width: 50vw;
   }
 
   .close {
-    right: 16%;
-    font-size: 3rem;
+    right: -22%;
+    font-size: 4rem;
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 30px;
   }
 
-  .form > * {
+  .name,
+  .insight,
+  .comment-button {
     margin: 10px 0;
     width: 50%;
+  }
+
+  .comment-button {
+    margin-bottom: 40px;
   }
 
   .footer {
@@ -232,5 +301,9 @@ body {
 
   .header-ul {
     padding: 10px 12vw;
+  }
+
+  .comments-table tr * {
+    padding: 0 20px;
   }
 }

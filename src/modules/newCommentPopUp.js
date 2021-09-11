@@ -1,4 +1,5 @@
 import commentsCounter from './commentsCounter.js';
+import createTableRow from './createTableRow.js';
 import getComments from './getComments.js';
 import postComment from './postComment.js';
 
@@ -44,25 +45,24 @@ const newCommentPopUp = (foodObject, main, menuDiv) => {
   numberOfCommentsContainer.className = 'num-of-comments';
   numberOfCommentsContainer.innerHTML = 'Comments(<span class="c-loading">Loading...</span>)';
 
-  const commentsContainer = document.createElement('div');
-  commentsContainer.className = 'comments-container';
+  const commentsContainer = document.createElement('table');
+  commentsContainer.className = 'comments-table';
 
-  commentsContainer.textContent = 'Loading...';
+  commentsContainer.innerHTML = 'Loading...';
 
   const updateComments = async () => {
     const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/IvP42xNcmZ7sT5rp87wL/comments/?item_id=${idCategory}`;
     const allComments = await getComments(url);
-    commentsContainer.textContent = '';
+    commentsContainer.innerHTML = '';
     numberOfCommentsContainer.textContent = `Comments(${
       (!allComments.error && commentsCounter(allComments)) || 0
     })`;
-
+    if (allComments.length) {
+      commentsContainer.appendChild(createTableRow('headerRow', 'Date', 'Name', 'Comment'));
+    }
     if (!allComments.error) {
       allComments.forEach((each) => {
-        const comment = document.createElement('p');
-        comment.className = 'comment';
-        commentsContainer.appendChild(comment);
-        comment.innerHTML = `<strong>${each.creation_date} ${each.username}</strong>:   ${each.comment}`;
+        commentsContainer.appendChild(createTableRow('row', each.creation_date, each.username, each.comment));
       });
     }
   };
