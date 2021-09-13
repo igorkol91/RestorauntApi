@@ -140,6 +140,11 @@ body {
   font-size: 1rem;
 }
 
+.table-loading {
+  margin-left: 50px;
+  font-size: 2rem;
+}
+
 .pop-up {
   background-color: #fff;
   text-align: center;
@@ -249,9 +254,9 @@ tr:nth-child(even) {
 
 .comment-button {
   margin-bottom: 40px;
+  border: 2px solid #4c3c3c;
   background-color: #4c3c3c;
   color: #fff;
-  border: none;
   border-radius: 5px;
   height: 40px;
   font-size: 1.5rem;
@@ -263,6 +268,11 @@ tr:nth-child(even) {
   color: #4c3c3c;
   font-weight: bold;
   border: 2px solid #4c3c3c;
+}
+
+.comment-button:active {
+  background-color: rgb(8, 58, 8);
+  color: #fff;
 }
 
 @media all and (min-width: 786px) {
