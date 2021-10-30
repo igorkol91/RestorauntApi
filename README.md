@@ -1,4 +1,4 @@
-# RestorauntApi
+# RestorauntApi  
 
 > The repo contains my javascript code for the Restoraunt Api project
 
