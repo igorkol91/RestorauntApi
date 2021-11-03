@@ -14,9 +14,6 @@
 ## LiveLink
 [LiveLink](https://igorkol91.github.io/RestorauntApi/dist/)
 
-### Video demo
-[VideoLink](https://drive.google.com/file/d/1ybLtxSC8SSCKpcN_FPnQ1OX328fvCrCK/view?usp=sharing)
-
 
 ## Getting Started
 
